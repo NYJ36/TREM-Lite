@@ -23,10 +23,15 @@ const rts_station = document.getElementById("rts_station");
 
 init_f();
 function init_f() {
-	document.getElementById("jma").checked = get_config().eew_jma ?? true;
-	document.getElementById("nied").checked = get_config().eew_nied ?? true;
-	document.getElementById("kma").checked = get_config().eew_kma ?? true;
-	document.getElementById("scdzj").checked = get_config().eew_scdzj ?? true;
+	document.getElementById("eew_jma").checked = get_config().eew_jma ?? true;
+	document.getElementById("eew_nied").checked = get_config().eew_nied ?? true;
+	document.getElementById("eew_kma").checked = get_config().eew_kma ?? true;
+	document.getElementById("eew_scdzj").checked = get_config().eew_scdzj ?? true;
+
+	document.getElementById("jp").checked = get_config().jp ?? true;
+	document.getElementById("cn").checked = get_config().cn ?? true;
+	document.getElementById("sk").checked = get_config().sk ?? true;
+	document.getElementById("nk").checked = get_config().nk ?? true;
 }
 
 fetch_rts_station();
@@ -162,6 +167,6 @@ function show_site() {
 
 function _onclick(id) {
 	const config = get_config();
-	config[`eew_${id}`] = document.getElementById(id).checked;
+	config[`${id}`] = document.getElementById(id).checked;
 	save_config(config);
 }

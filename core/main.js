@@ -59,23 +59,25 @@ TREM.Maps.main = L.map("map", {
 })
 	.setView([23.7, 120.4], 7.8);
 
-const map_list = ["tw.json", "jp.json", "cn.json", "sk.json", "nk.json"];
+const map_list = ["tw", "jp", "cn", "sk", "nk"];
+const config = get_config();
 
 for (let i = 0; i < map_list.length; i++)
-	L.geoJson.vt(require(path.join(__dirname, "../resource/maps", map_list[i])), {
-		edgeBufferTiles : 2,
-		minZoom         : 4,
-		maxZoom         : 12,
-		tolerance       : 20,
-		buffer          : 256,
-		debug           : 0,
-		style           : {
-			weight      : 0.8,
-			color       : "#6A6F75",
-			fillColor   : "#3F4045",
-			fillOpacity : 0.5,
-		},
-	}).addTo(TREM.Maps.main);
+	if(config[`${map_list[i]}`] || map_list[i] == "tw")
+		L.geoJson.vt(require(path.join(__dirname, "../resource/maps", map_list[i] + ".json")), {
+			edgeBufferTiles : 2,
+			minZoom         : 4,
+			maxZoom         : 12,
+			tolerance       : 20,
+			buffer          : 256,
+			debug           : 0,
+			style           : {
+				weight      : 0.8,
+				color       : "#6A6F75",
+				fillColor   : "#3F4045",
+				fillOpacity : 0.5,
+			},
+		}).addTo(TREM.Maps.main);
 
 set_user_location();
 function set_user_location() {
