@@ -138,10 +138,11 @@ fetch_cache_report();
 function fetch_cache_report() {
 	const config = get_config();
 	for (let i = 0; i < cache_report.options.length; i++)
-		if (cache_report.options[i].value == config.cache_report)
+		if (cache_report.options[i].value == config.cache_report.value)
 			cache_report.options[i].selected = true;
 	cache_report.addEventListener("change", (e) => {
-		config.cache_report = cache_report.value;
+		config.cache_report.value = cache_report.value;
+		config.cache_report.reset = true;
 		save_config(config);
 	});
 }

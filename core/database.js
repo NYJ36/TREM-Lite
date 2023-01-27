@@ -12,6 +12,7 @@ function init_config() {
 	if (!localStorage.Config)
 		localStorage.Config = JSON.stringify({
 			user_location: {},
+			cache_report: {},
 		});
 }
 

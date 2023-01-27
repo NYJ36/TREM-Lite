@@ -139,6 +139,19 @@ setInterval(() => {
 }, 600_000);
 
 setInterval(() => {
+	const config = get_config();
+	console.log(config.cache_report.reset);
+	if (config.cache_report.reset == undefined) {
+		config.cache_report.reset = false;
+		save_config(config);
+	} else if (config.cache_report.reset) {
+		config.cache_report.reset = false;
+		save_config(config);
+		refresh_report_list(true);
+	}
+}, 100);
+
+setInterval(() => {
 	if (TREM.audio.main.length) {
 		if (player_1) return;
 		player_1 = true;

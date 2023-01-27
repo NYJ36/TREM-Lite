@@ -47,7 +47,7 @@ async function fetch_report() {
 	return await new Promise((c) => {
 		const controller = new AbortController();
 		const config = get_config();
-		const url = `https://exptech.com.tw/api/v1/earthquake/reports?limit=${config.cache_report ? config.cache_report : 50}`;
+		const url = `https://exptech.com.tw/api/v1/earthquake/reports?limit=${config.cache_report.value ?? 50}`;
 		setTimeout(() => {
 			controller.abort();
 		}, 2500);
