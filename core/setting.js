@@ -20,6 +20,7 @@ const input_lat = document.getElementById("lat");
 const input_lon = document.getElementById("lon");
 const site = document.getElementById("site");
 const rts_station = document.getElementById("rts_station");
+const cache_report = document.getElementById("cache_report");
 
 init_f();
 function init_f() {
@@ -132,6 +133,18 @@ site.addEventListener("change", () => {
 	config.user_location.site = site.value;
 	save_config(config);
 });
+
+fetch_cache_report();
+function fetch_cache_report() {
+	const config = get_config();
+	for (let i = 0; i < cache_report.options.length; i++)
+		if (cache_report.options[i].value == config.cache_report)
+			cache_report.options[i].selected = true;
+	cache_report.addEventListener("change", (e) => {
+		config.cache_report = cache_report.value;
+		save_config(config);
+	});
+}
 
 function reset_location(init = false) {
 	const config = get_config();

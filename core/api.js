@@ -46,10 +46,12 @@ function fetch_eew() {
 async function fetch_report() {
 	return await new Promise((c) => {
 		const controller = new AbortController();
+		const config = get_config();
+		const url = `https://exptech.com.tw/api/v1/earthquake/reports?limit=${config.cache_report ? config.cache_report : 50}`;
 		setTimeout(() => {
 			controller.abort();
 		}, 2500);
-		fetch("https://exptech.com.tw/api/v1/earthquake/reports?limit=50", { signal: controller.signal })
+		fetch(url, { signal: controller.signal })
 			.then((ans) => ans.json())
 			.then((ans) => {
 				report_data = ans;
